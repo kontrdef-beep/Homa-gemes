@@ -35,7 +35,6 @@
         }
         .user-block { display: flex; align-items: center; gap: 10px; }
         
-        /* Золотая неоновая рамка Чемпиона */
         .avatar-box { 
             width: 44px; 
             height: 44px; 
@@ -44,7 +43,6 @@
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            font-size: 22px; 
             position: relative; 
             border: 2px solid #ffd700; 
             box-shadow: 0 0 15px #ffd700, inset 0 0 10px #ffd700;
@@ -55,6 +53,7 @@
             100% { box-shadow: 0 0 20px #ffd700, 0 0 30px #ffaa00; }
         }
         .crown-icon { position: absolute; top: -12px; font-size: 14px; filter: drop-shadow(0 0 4px #ffd700); }
+        .avatar-img { width: 30px; height: 30px; }
         
         .username { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 13px; color: #fff; letter-spacing: 0.5px; }
         .user-title { font-size: 10px; color: #ffd700; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 8px rgba(255,215,0,0.6); }
@@ -94,11 +93,11 @@
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.5); 
         }
 
-        /* --- КИБЕР-КРАШ АРЕНА (CANVAS) --- */
+        /* --- КРАШ АРЕНА --- */
         .game-screen { 
             background: #04060c; 
             border-radius: 16px; 
-            height: 230px; 
+            height: 240px; 
             position: relative; 
             border: 1px solid #00f0ff; 
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 30px rgba(0,0,0,0.8);
@@ -139,7 +138,7 @@
             font-weight: 900; 
             color: #fff; 
             text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff; 
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .prize-tag {
@@ -258,7 +257,17 @@
         <div class="user-block">
             <div class="avatar-box">
                 <span class="crown-icon">👑</span>
-                🐹
+                <!-- SVG Хомяк в аватарке -->
+                <svg class="avatar-img" viewBox="0 0 100 100">
+                    <circle cx="50" cy="55" r="35" fill="#e0a96d"/>
+                    <circle cx="30" cy="25" r="14" fill="#e0a96d"/>
+                    <circle cx="70" cy="25" r="14" fill="#e0a96d"/>
+                    <circle cx="30" cy="25" r="8" fill="#ff77c2"/>
+                    <circle cx="70" cy="25" r="8" fill="#ff77c2"/>
+                    <ellipse cx="50" cy="62" rx="20" ry="15" fill="#f5d3b3"/>
+                    <polygon points="20,40 80,40 75,52 25,52" fill="#00f0ff" opacity="0.9"/>
+                    <rect x="25" y="44" width="50" height="4" fill="#ff007f"/>
+                </svg>
             </div>
             <div class="user-info">
                 <span class="username">@homa_boss</span>
@@ -353,7 +362,7 @@
         </div>
     </div>
 
-    <!-- ДВИЖОК CANVAS-АНИМАЦИИ КИБЕР-ХОМЫ -->
+    <!-- CANVAS-ДВИЖОК С ВЕКТОРНЫМ СГЕНЕРИРОВАННЫМ КИБЕР-ХОМОЙ -->
     <script>
         const canvas = document.getElementById('cyberCanvas');
         const ctx = canvas.getContext('2d');
@@ -366,6 +375,45 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
+        // Векторный Кибер-Хома на Ховерборде (SVG Data URL)
+        const homaImg = new Image();
+        const svgString = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+            <!-- Неоновое свечение доски -->
+            <ellipse cx="60" cy="100" rx="45" ry="8" fill="#00f0ff" opacity="0.4" filter="blur(3px)"/>
+            <!-- Ховерборд -->
+            <path d="M 15 95 Q 60 108 105 95 Q 95 88 60 92 Q 25 88 15 95 Z" fill="#111827" stroke="#00f0ff" stroke-width="2"/>
+            <circle cx="25" cy="96" r="4" fill="#ff007f"/>
+            <circle cx="95" cy="96" r="4" fill="#00f0ff"/>
+            
+            <!-- Тело Хомяка -->
+            <circle cx="60" cy="65" r="28" fill="#d97706"/>
+            <ellipse cx="60" cy="70" rx="18" ry="14" fill="#fef3c7"/>
+            
+            <!-- Ушки -->
+            <circle cx="40" cy="38" r="11" fill="#d97706"/>
+            <circle cx="80" cy="38" r="11" fill="#d97706"/>
+            <circle cx="40" cy="38" r="6" fill="#f43f5e"/>
+            <circle cx="80" cy="38" r="6" fill="#f43f5e"/>
+            
+            <!-- Голова -->
+            <circle cx="60" cy="50" r="22" fill="#f59e0b"/>
+            <!-- Щёчки -->
+            <circle cx="44" cy="58" r="6" fill="#fef3c7"/>
+            <circle cx="76" cy="58" r="6" fill="#fef3c7"/>
+            <ellipse cx="60" cy="56" rx="3" ry="2" fill="#1e293b"/>
+            
+            <!-- Кибер-Визор / Очки -->
+            <path d="M 38 44 Q 60 40 82 44 L 80 54 Q 60 50 40 54 Z" fill="#00f0ff" stroke="#ff007f" stroke-width="1.5"/>
+            <line x1="42" y1="48" x2="78" y2="48" stroke="#ffffff" stroke-width="1.5" opacity="0.8"/>
+            
+            <!-- Ручки / Лапки -->
+            <circle cx="42" cy="72" r="5" fill="#f59e0b"/>
+            <circle cx="78" cy="72" r="5" fill="#f59e0b"/>
+        </svg>`;
+
+        homaImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
+
         let progress = 0;
         let currentMult = 1.00;
         let particles = [];
@@ -373,10 +421,9 @@
         function drawCyberHighway() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // 1. Рисуем сетку киберпанк-шоссе
-            ctx.strokeStyle = 'rgba(0, 240, 255, 0.15)';
+            // 1. Сетка фона
+            ctx.strokeStyle = 'rgba(0, 240, 255, 0.12)';
             ctx.lineWidth = 1;
-
             const gridSpacing = 20;
             const offset = (Date.now() / 20) % gridSpacing;
 
@@ -393,11 +440,11 @@
                 ctx.stroke();
             }
 
-            // 2. Рисуем неоновую траекторию полёта
-            const startX = 30;
-            const startY = canvas.height - 30;
-            const endX = startX + (canvas.width - 80) * progress;
-            const endY = startY - (canvas.height - 80) * Math.pow(progress, 1.8);
+            // 2. Траектория графика
+            const startX = 20;
+            const startY = canvas.height - 20;
+            const endX = startX + (canvas.width - 70) * progress;
+            const endY = startY - (canvas.height - 70) * Math.pow(progress, 1.8);
 
             ctx.shadowBlur = 15;
             ctx.shadowColor = '#00f0ff';
@@ -409,11 +456,11 @@
             ctx.quadraticCurveTo(startX + (endX - startX) * 0.5, startY, endX, endY);
             ctx.stroke();
 
-            // 3. Высекаем искры из-под ховерборда
+            // 3. Искры из-под ховерборда
             if (progress > 0.05 && progress < 1) {
                 particles.push({
-                    x: endX,
-                    y: endY + 10,
+                    x: endX - 5,
+                    y: endY + 15,
                     vx: (Math.random() - 0.5) * 4 - 2,
                     vy: Math.random() * 3,
                     life: 1,
@@ -424,7 +471,7 @@
             particles.forEach((p, i) => {
                 ctx.fillStyle = p.color;
                 ctx.shadowColor = p.color;
-                ctx.shadowBlur = 8;
+                ctx.shadowBlur = 6;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.life * 3, 0, Math.PI * 2);
                 ctx.fill();
@@ -435,25 +482,25 @@
                 if (p.life <= 0) particles.splice(i, 1);
             });
 
-            // 4. Персонаж: Кибер-Хома на Ховерборде! 🛹🐹
-            ctx.shadowBlur = 20;
-            ctx.shadowColor = '#ff007f';
-            ctx.font = '28px sans-serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('🛹🐹⚡', endX, endY - 10);
+            // 4. Отрисовка векторного Хомы
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#00f0ff';
+            // Отрисовываем SVG карточку поверх точки графика
+            ctx.drawImage(homaImg, endX - 30, endY - 45, 60, 60);
 
-            // Обновляем коэффициент
+            // Коэффициент
             currentMult = 1.00 + (Math.pow(progress * 3, 2.2));
             multText.innerText = `x${currentMult.toFixed(2)}`;
 
             progress += 0.003;
-            if (progress > 1) progress = 0; // Зацикливание для демонстрации
+            if (progress > 1) progress = 0;
 
             requestAnimationFrame(drawCyberHighway);
         }
 
-        drawCyberHighway();
+        homaImg.onload = () => {
+            drawCyberHighway();
+        };
 
         function openTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
