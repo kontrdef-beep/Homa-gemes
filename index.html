@@ -3,63 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Cyber Runner — Homa Games</title>
+    <title>Homa Runner — TON Style</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Rajdhani', sans-serif; user-select: none; }
         
         body { 
-            background: #05070f; 
+            background: #080d1a; 
             color: #fff; 
             padding: 12px; 
             display: flex; 
             flex-direction: column; 
             min-height: 100vh;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.15), transparent 70%),
-                radial-gradient(circle at 50% 100%, rgba(255, 0, 127, 0.1), transparent 70%);
+                radial-gradient(circle at 50% 10%, rgba(0, 163, 255, 0.25), transparent 60%),
+                radial-gradient(circle at 50% 90%, rgba(0, 82, 212, 0.2), transparent 70%);
         }
 
-        /* --- КИБЕР-ШАПКА --- */
+        /* --- ШАПКА В СТИЛЕ TON --- */
         .header { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             margin-bottom: 12px; 
-            background: rgba(13, 18, 30, 0.8); 
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.75); 
+            backdrop-filter: blur(12px);
             padding: 8px 12px; 
-            border-radius: 14px; 
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+            border-radius: 16px; 
+            border: 1px solid rgba(0, 163, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 163, 255, 0.15);
         }
         .user-block { display: flex; align-items: center; gap: 10px; }
         
         .avatar-box { 
-            width: 44px; 
-            height: 44px; 
+            width: 46px; 
+            height: 46px; 
             border-radius: 50%; 
-            background: #090d16; 
+            background: #0d1527; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             position: relative; 
             border: 2px solid #ffd700; 
-            box-shadow: 0 0 15px #ffd700, inset 0 0 10px #ffd700;
-            animation: pulse-gold 2s infinite alternate;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
         }
-        @keyframes pulse-gold {
-            0% { box-shadow: 0 0 10px #ffd700; }
-            100% { box-shadow: 0 0 20px #ffd700, 0 0 30px #ffaa00; }
-        }
-        .crown-icon { position: absolute; top: -12px; font-size: 14px; filter: drop-shadow(0 0 4px #ffd700); }
-        .avatar-img { width: 30px; height: 30px; }
+        .crown-icon { position: absolute; top: -12px; font-size: 13px; filter: drop-shadow(0 0 4px #ffd700); }
+        .avatar-svg { width: 38px; height: 38px; }
         
-        .username { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 13px; color: #fff; letter-spacing: 0.5px; }
-        .user-title { font-size: 10px; color: #ffd700; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 8px rgba(255,215,0,0.6); }
+        .username { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 13px; color: #fff; }
+        .user-title { font-size: 10px; color: #ffd700; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         
         .balance-badge { 
-            background: rgba(255, 183, 0, 0.1); 
+            background: rgba(255, 183, 0, 0.12); 
             border: 1px solid #ffb700; 
             padding: 6px 12px; 
             border-radius: 20px; 
@@ -67,7 +62,7 @@
             font-weight: 800; 
             color: #ffca28; 
             font-size: 13px; 
-            box-shadow: 0 0 10px rgba(255, 183, 0, 0.2);
+            box-shadow: 0 0 12px rgba(255, 183, 0, 0.25);
         }
 
         /* --- НАВИГАЦИЯ --- */
@@ -75,10 +70,10 @@
         .tab-btn { 
             flex: 1; 
             padding: 10px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            background: rgba(13, 18, 30, 0.6); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            background: rgba(15, 23, 42, 0.6); 
             color: #64748b; 
-            border-radius: 10px; 
+            border-radius: 12px; 
             font-family: 'Orbitron', sans-serif;
             font-weight: 700; 
             font-size: 11px; 
@@ -87,20 +82,20 @@
             transition: 0.2s;
         }
         .tab-btn.active { 
-            background: linear-gradient(135deg, #00f0ff, #0072ff); 
-            color: #000; 
-            border-color: #00f0ff;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5); 
+            background: linear-gradient(135deg, #00a3ff, #0052d4); 
+            color: #fff; 
+            border-color: #00d2ff;
+            box-shadow: 0 0 16px rgba(0, 163, 255, 0.5); 
         }
 
-        /* --- КРАШ АРЕНА --- */
+        /* --- ИГРОВОЙ ЭКРАН (КРАШ) --- */
         .game-screen { 
-            background: #04060c; 
-            border-radius: 16px; 
-            height: 240px; 
+            background: radial-gradient(circle at 50% 50%, #0c1830, #050a14); 
+            border-radius: 20px; 
+            height: 250px; 
             position: relative; 
-            border: 1px solid #00f0ff; 
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 30px rgba(0,0,0,0.8);
+            border: 1px solid rgba(0, 210, 255, 0.4); 
+            box-shadow: 0 0 25px rgba(0, 163, 255, 0.2), inset 0 0 35px rgba(0,0,0,0.8);
             overflow: hidden; 
             margin-bottom: 12px; 
         }
@@ -120,44 +115,44 @@
         }
 
         .status-tag { 
-            background: rgba(0, 240, 255, 0.15); 
-            border: 1px solid #00f0ff; 
-            color: #00f0ff; 
-            padding: 4px 12px; 
+            background: rgba(0, 163, 255, 0.15); 
+            border: 1px solid #00d2ff; 
+            color: #00d2ff; 
+            padding: 4px 14px; 
             border-radius: 20px; 
             font-family: 'Orbitron', sans-serif;
             font-size: 10px; 
             font-weight: 800; 
             letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            box-shadow: 0 0 12px rgba(0, 210, 255, 0.3);
         }
 
         .multiplier { 
             font-family: 'Orbitron', sans-serif;
-            font-size: 54px; 
+            font-size: 56px; 
             font-weight: 900; 
             color: #fff; 
-            text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff; 
+            text-shadow: 0 0 20px #00a3ff, 0 0 40px #0052d4; 
             margin-top: 15px;
         }
 
         .prize-tag {
-            background: rgba(255, 0, 127, 0.2);
-            border: 1px solid #ff007f;
-            color: #ff77c2;
-            padding: 4px 10px;
-            border-radius: 8px;
+            background: rgba(0, 82, 212, 0.3);
+            border: 1px solid #00a3ff;
+            color: #7dd3fc;
+            padding: 5px 12px;
+            border-radius: 10px;
             font-size: 11px;
             font-weight: 700;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
 
         /* --- ПАНЕЛЬ СТАВОК --- */
         .controls-card { 
-            background: rgba(13, 18, 30, 0.9); 
-            padding: 12px; 
-            border-radius: 16px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
+            background: rgba(15, 23, 42, 0.85); 
+            padding: 14px; 
+            border-radius: 18px; 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
         }
         .bet-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .bet-label { font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase; }
@@ -165,12 +160,12 @@
         .input-box { 
             display: flex; 
             align-items: center; 
-            background: #080c14; 
-            border: 1px solid #00f0ff; 
-            border-radius: 8px; 
-            padding: 4px 10px; 
-            width: 120px; 
-            box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+            background: #091121; 
+            border: 1px solid #00a3ff; 
+            border-radius: 10px; 
+            padding: 6px 12px; 
+            width: 130px; 
+            box-shadow: 0 0 10px rgba(0, 163, 255, 0.2);
         }
         .input-box input { 
             width: 100%; 
@@ -184,14 +179,14 @@
             outline: none; 
         }
         
-        .quick-bets { display: flex; gap: 6px; margin-bottom: 10px; }
+        .quick-bets { display: flex; gap: 6px; margin-bottom: 12px; }
         .quick-btn { 
             flex: 1; 
             background: #0f172a; 
-            border: 1px solid #334155; 
+            border: 1px solid #1e293b; 
             color: #38bdf8; 
-            padding: 6px; 
-            border-radius: 6px; 
+            padding: 8px; 
+            border-radius: 8px; 
             font-family: 'Orbitron', sans-serif;
             font-size: 10px; 
             font-weight: 700; 
@@ -200,17 +195,17 @@
 
         .action-btn { 
             width: 100%; 
-            padding: 15px; 
+            padding: 16px; 
             border: none; 
-            border-radius: 12px; 
-            background: linear-gradient(135deg, #00ff66, #00b347); 
+            border-radius: 14px; 
+            background: linear-gradient(135deg, #00e676, #00a843); 
             color: #000; 
             font-family: 'Orbitron', sans-serif;
             font-size: 16px; 
             font-weight: 900; 
             letter-spacing: 1px; 
             cursor: pointer; 
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.5); 
+            box-shadow: 0 0 22px rgba(0, 230, 118, 0.5); 
             text-transform: uppercase; 
         }
 
@@ -218,12 +213,12 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         
-        .gifts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .gifts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .gift-item { 
-            background: rgba(13, 18, 30, 0.8); 
-            padding: 10px; 
-            border-radius: 12px; 
-            border: 1px solid rgba(255,0,127,0.3); 
+            background: rgba(15, 23, 42, 0.8); 
+            padding: 12px; 
+            border-radius: 14px; 
+            border: 1px solid rgba(0, 163, 255, 0.2); 
             text-align: center; 
         }
         .gift-icon { font-size: 32px; margin-bottom: 4px; }
@@ -231,9 +226,9 @@
         .gift-cost { font-size: 10px; color: #94a3b8; margin-top: 4px; }
 
         .season-box { 
-            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(0,240,255,0.1)); 
-            padding: 10px; 
-            border-radius: 12px; 
+            background: linear-gradient(135deg, rgba(255,215,0,0.12), rgba(0,163,255,0.12)); 
+            padding: 12px; 
+            border-radius: 14px; 
             margin-bottom: 10px; 
             border: 1px solid #ffd700; 
         }
@@ -241,9 +236,9 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            background: rgba(13, 18, 30, 0.8); 
-            padding: 8px 12px; 
-            border-radius: 10px; 
+            background: rgba(15, 23, 42, 0.8); 
+            padding: 10px 14px; 
+            border-radius: 12px; 
             margin-bottom: 6px; 
             border: 1px solid rgba(255,255,255,0.05); 
         }
@@ -257,16 +252,22 @@
         <div class="user-block">
             <div class="avatar-box">
                 <span class="crown-icon">👑</span>
-                <!-- SVG Хомяк в аватарке -->
-                <svg class="avatar-img" viewBox="0 0 100 100">
-                    <circle cx="50" cy="55" r="35" fill="#e0a96d"/>
-                    <circle cx="30" cy="25" r="14" fill="#e0a96d"/>
-                    <circle cx="70" cy="25" r="14" fill="#e0a96d"/>
-                    <circle cx="30" cy="25" r="8" fill="#ff77c2"/>
-                    <circle cx="70" cy="25" r="8" fill="#ff77c2"/>
-                    <ellipse cx="50" cy="62" rx="20" ry="15" fill="#f5d3b3"/>
-                    <polygon points="20,40 80,40 75,52 25,52" fill="#00f0ff" opacity="0.9"/>
-                    <rect x="25" y="44" width="50" height="4" fill="#ff007f"/>
+                <svg class="avatar-svg" viewBox="0 0 200 200">
+                    <!-- Аватарка хомяка -->
+                    <circle cx="100" cy="115" r="42" fill="#E67E22"/>
+                    <ellipse cx="100" cy="120" rx="26" ry="20" fill="#FFF3E0"/>
+                    <circle cx="62" cy="52" r="16" fill="#E67E22"/>
+                    <circle cx="62" cy="52" r="9" fill="#FF8A80"/>
+                    <circle cx="138" cy="52" r="16" fill="#E67E22"/>
+                    <circle cx="138" cy="52" r="9" fill="#FF8A80"/>
+                    <circle cx="100" cy="80" r="38" fill="#FFB347"/>
+                    <ellipse cx="72" cy="92" rx="16" ry="12" fill="#FFF3E0"/>
+                    <ellipse cx="128" cy="92" rx="16" ry="12" fill="#FFF3E0"/>
+                    <polygon points="96,88 104,88 100,93" fill="#D81B60"/>
+                    <!-- Очки -->
+                    <path d="M 58 68 Q 100 60 142 68 L 138 86 Q 100 80 62 86 Z" fill="#00d2ff"/>
+                    <path d="M 68 71 L 88 71 L 80 81 L 65 81 Z" fill="#ffffff" opacity="0.6"/>
+                    <path d="M 110 71 L 130 71 L 122 81 L 107 81 Z" fill="#ffffff" opacity="0.6"/>
                 </svg>
             </div>
             <div class="user-info">
@@ -289,9 +290,9 @@
         <div class="game-screen">
             <canvas id="cyberCanvas"></canvas>
             <div class="game-overlay">
-                <div class="status-tag">⚡ CYBER RUNNER LIVE</div>
+                <div class="status-tag">⚡ TON HOMA RUNNER</div>
                 <div class="multiplier" id="multText">x1.00</div>
-                <div class="prize-tag">🎁 Текущий предмет: ⚡ Кибер-Чип</div>
+                <div class="prize-tag">🎁 Приз: ⚡ Кибер-Чип</div>
             </div>
         </div>
 
@@ -362,7 +363,7 @@
         </div>
     </div>
 
-    <!-- CANVAS-ДВИЖОК С ВЕКТОРНЫМ СГЕНЕРИРОВАННЫМ КИБЕР-ХОМОЙ -->
+    <!-- CANVAS ENGINE: РЕНДЕР ХОМЯКА В СТИЛЕ РЕФЕРЕНСА С ГОРИЛЛОЙ -->
     <script>
         const canvas = document.getElementById('cyberCanvas');
         const ctx = canvas.getContext('2d');
@@ -375,41 +376,65 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Векторный Кибер-Хома на Ховерборде (SVG Data URL)
+        // Векторный 2.5D Хомяк на Ховерборде в стилистике TON (как горилла в ракете)
         const homaImg = new Image();
         const svgString = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
-            <!-- Неоновое свечение доски -->
-            <ellipse cx="60" cy="100" rx="45" ry="8" fill="#00f0ff" opacity="0.4" filter="blur(3px)"/>
-            <!-- Ховерборд -->
-            <path d="M 15 95 Q 60 108 105 95 Q 95 88 60 92 Q 25 88 15 95 Z" fill="#111827" stroke="#00f0ff" stroke-width="2"/>
-            <circle cx="25" cy="96" r="4" fill="#ff007f"/>
-            <circle cx="95" cy="96" r="4" fill="#00f0ff"/>
-            
-            <!-- Тело Хомяка -->
-            <circle cx="60" cy="65" r="28" fill="#d97706"/>
-            <ellipse cx="60" cy="70" rx="18" ry="14" fill="#fef3c7"/>
-            
-            <!-- Ушки -->
-            <circle cx="40" cy="38" r="11" fill="#d97706"/>
-            <circle cx="80" cy="38" r="11" fill="#d97706"/>
-            <circle cx="40" cy="38" r="6" fill="#f43f5e"/>
-            <circle cx="80" cy="38" r="6" fill="#f43f5e"/>
-            
-            <!-- Голова -->
-            <circle cx="60" cy="50" r="22" fill="#f59e0b"/>
-            <!-- Щёчки -->
-            <circle cx="44" cy="58" r="6" fill="#fef3c7"/>
-            <circle cx="76" cy="58" r="6" fill="#fef3c7"/>
-            <ellipse cx="60" cy="56" rx="3" ry="2" fill="#1e293b"/>
-            
-            <!-- Кибер-Визор / Очки -->
-            <path d="M 38 44 Q 60 40 82 44 L 80 54 Q 60 50 40 54 Z" fill="#00f0ff" stroke="#ff007f" stroke-width="1.5"/>
-            <line x1="42" y1="48" x2="78" y2="48" stroke="#ffffff" stroke-width="1.5" opacity="0.8"/>
-            
-            <!-- Ручки / Лапки -->
-            <circle cx="42" cy="72" r="5" fill="#f59e0b"/>
-            <circle cx="78" cy="72" r="5" fill="#f59e0b"/>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+          <defs>
+            <linearGradient id="furGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FFB347"/>
+              <stop offset="100%" stop-color="#E67E22"/>
+            </linearGradient>
+            <linearGradient id="bellyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FFF3E0"/>
+              <stop offset="100%" stop-color="#FFE0B2"/>
+            </linearGradient>
+            <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="0.5">
+              <stop offset="0%" stop-color="#0052D4"/>
+              <stop offset="50%" stop-color="#4364F7"/>
+              <stop offset="100%" stop-color="#6FB1FC"/>
+            </linearGradient>
+            <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0f172a"/>
+              <stop offset="35%" stop-color="#00d2ff"/>
+              <stop offset="100%" stop-color="#0052D4"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Пламя / Турбины ховерборда -->
+          <path d="M 45 152 Q 30 185 20 190 Q 50 172 58 152 Z" fill="#00f0ff" opacity="0.85"/>
+          <path d="M 145 152 Q 155 185 170 190 Q 150 172 138 152 Z" fill="#00f0ff" opacity="0.85"/>
+
+          <!-- TON Ховерборд -->
+          <path d="M 18 148 C 18 132, 182 132, 182 148 C 182 162, 18 162, 18 148 Z" fill="url(#boardGrad)" stroke="#00ffff" stroke-width="2.5"/>
+          <path d="M 35 142 Q 100 136 165 142" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+          <ellipse cx="100" cy="150" rx="14" ry="4" fill="#00ffff"/>
+
+          <!-- Лапки -->
+          <ellipse cx="68" cy="132" rx="9" ry="7" fill="#E67E22"/>
+          <ellipse cx="132" cy="132" rx="9" ry="7" fill="#E67E22"/>
+
+          <!-- Туловище -->
+          <ellipse cx="100" cy="115" rx="42" ry="32" fill="url(#furGrad)"/>
+          <ellipse cx="100" cy="120" rx="26" ry="20" fill="url(#bellyGrad)"/>
+
+          <!-- Ушки -->
+          <circle cx="62" cy="52" r="16" fill="url(#furGrad)"/>
+          <circle cx="62" cy="52" r="9" fill="#FF8A80"/>
+          <circle cx="138" cy="52" r="16" fill="url(#furGrad)"/>
+          <circle cx="138" cy="52" r="9" fill="#FF8A80"/>
+
+          <!-- Голова -->
+          <circle cx="100" cy="80" r="38" fill="url(#furGrad)"/>
+          <ellipse cx="72" cy="92" rx="16" ry="12" fill="url(#bellyGrad)"/>
+          <ellipse cx="128" cy="92" rx="16" ry="12" fill="url(#bellyGrad)"/>
+          <polygon points="96,88 104,88 100,93" fill="#D81B60"/>
+          <path d="M 95 95 Q 100 98 105 95" stroke="#5D4037" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+          <!-- Очки как у горилы TON -->
+          <path d="M 56 66 Q 100 58 144 66 L 140 86 Q 100 80 60 86 Z" fill="url(#glassGrad)" stroke="#091121" stroke-width="3"/>
+          <path d="M 66 69 L 88 69 L 78 81 L 63 81 Z" fill="#ffffff" opacity="0.5"/>
+          <path d="M 112 69 L 134 69 L 124 81 L 109 81 Z" fill="#ffffff" opacity="0.5"/>
         </svg>`;
 
         homaImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
@@ -418,14 +443,14 @@
         let currentMult = 1.00;
         let particles = [];
 
-        function drawCyberHighway() {
+        function drawGame() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // 1. Сетка фона
-            ctx.strokeStyle = 'rgba(0, 240, 255, 0.12)';
+            // 1. Анимированная сетка TON-пространства
+            ctx.strokeStyle = 'rgba(0, 163, 255, 0.12)';
             ctx.lineWidth = 1;
-            const gridSpacing = 20;
-            const offset = (Date.now() / 20) % gridSpacing;
+            const gridSpacing = 22;
+            const offset = (Date.now() / 18) % gridSpacing;
 
             for (let x = 0; x < canvas.width; x += gridSpacing) {
                 ctx.beginPath();
@@ -440,14 +465,14 @@
                 ctx.stroke();
             }
 
-            // 2. Траектория графика
+            // 2. Линия полёта
             const startX = 20;
             const startY = canvas.height - 20;
-            const endX = startX + (canvas.width - 70) * progress;
-            const endY = startY - (canvas.height - 70) * Math.pow(progress, 1.8);
+            const endX = startX + (canvas.width - 80) * progress;
+            const endY = startY - (canvas.height - 80) * Math.pow(progress, 1.8);
 
-            ctx.shadowBlur = 15;
-            ctx.shadowColor = '#00f0ff';
+            ctx.shadowBlur = 18;
+            ctx.shadowColor = '#00a3ff';
             ctx.strokeStyle = '#00f0ff';
             ctx.lineWidth = 4;
 
@@ -456,24 +481,24 @@
             ctx.quadraticCurveTo(startX + (endX - startX) * 0.5, startY, endX, endY);
             ctx.stroke();
 
-            // 3. Искры из-под ховерборда
+            // 3. Искры и частицы энергии
             if (progress > 0.05 && progress < 1) {
                 particles.push({
                     x: endX - 5,
-                    y: endY + 15,
+                    y: endY + 20,
                     vx: (Math.random() - 0.5) * 4 - 2,
-                    vy: Math.random() * 3,
+                    vy: Math.random() * 3 + 1,
                     life: 1,
-                    color: Math.random() > 0.5 ? '#00f0ff' : '#ff007f'
+                    color: Math.random() > 0.4 ? '#00f0ff' : '#38bdf8'
                 });
             }
 
             particles.forEach((p, i) => {
                 ctx.fillStyle = p.color;
                 ctx.shadowColor = p.color;
-                ctx.shadowBlur = 6;
+                ctx.shadowBlur = 8;
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, p.life * 3, 0, Math.PI * 2);
+                ctx.arc(p.x, p.y, p.life * 3.5, 0, Math.PI * 2);
                 ctx.fill();
 
                 p.x += p.vx;
@@ -482,11 +507,10 @@
                 if (p.life <= 0) particles.splice(i, 1);
             });
 
-            // 4. Отрисовка векторного Хомы
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = '#00f0ff';
-            // Отрисовываем SVG карточку поверх точки графика
-            ctx.drawImage(homaImg, endX - 30, endY - 45, 60, 60);
+            // 4. Отрисовка Хомяка на ховерборде
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = '#00a3ff';
+            ctx.drawImage(homaImg, endX - 35, endY - 50, 70, 70);
 
             // Коэффициент
             currentMult = 1.00 + (Math.pow(progress * 3, 2.2));
@@ -495,11 +519,11 @@
             progress += 0.003;
             if (progress > 1) progress = 0;
 
-            requestAnimationFrame(drawCyberHighway);
+            requestAnimationFrame(drawGame);
         }
 
         homaImg.onload = () => {
-            drawCyberHighway();
+            drawGame();
         };
 
         function openTab(tabId, btn) {
